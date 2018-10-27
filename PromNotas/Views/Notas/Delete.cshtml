@@ -1,0 +1,73 @@
+﻿@model PromNotas.Models.Nota
+
+@{
+    ViewBag.Title = "Eliminar nota";
+}
+
+<h3>¿Estás seguro de que deseas eliminar esta nota?</h3>
+<div class="row">
+    <div class="col-md-5">
+        <dl class="dl-horizontal">
+            <ul class="list-group">
+                <li class="list-group-item active"><center>Detalle de la nota</center></li>
+                <li class="list-group-item">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nota1)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nota1)
+            </dd>
+            </li>
+            <li class="list-group-item">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nota2)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nota2)
+            </dd>
+            </li>
+
+            <li class="list-group-item">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nota3)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nota3)
+            </dd>
+            </li>
+
+            <li class="list-group-item">
+            <dt>
+                @Html.DisplayNameFor(model => model.Promedio)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Promedio)
+            </dd>
+            </li>
+
+            <li class="list-group-item">
+            <dt>
+                @Html.DisplayNameFor(model => model.Estado)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Estado)
+            </dd>
+            </li>
+            </ul>
+        </dl>
+    </div>
+</div>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+            @Html.ActionLink("Regresar a la lista", "Index", new { }, new { @class="btn btn-default"})
+        </div>
+    }
+

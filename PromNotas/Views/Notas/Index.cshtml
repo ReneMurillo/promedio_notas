@@ -1,0 +1,91 @@
+﻿@model IEnumerable<PromNotas.Models.Nota>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listado de notas</h2>
+
+<div class="row">
+    <div class="col-md-3">
+        <p>
+            @Html.ActionLink("Registrar nota", "Create", new { }, new { @class = "btn btn-primary" })
+        </p>
+    </div>
+    <div class="col-md-9">
+        <form action="/Notas/Index" method="post">
+            <div class="form-inline">
+                <select name="filtro" class="form-control">
+                    <option value="0">Seleccione</option>
+                    <option value="Aprobado">Aprobado</option>
+                    <option value="Reprobado">Reprobado</option>
+                </select>
+                <input type="text" name="valor" class="form-control" placeholder="Ingrese el promedio" />
+                <input type="submit" value="Buscar" class="btn btn-info" />
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<div class="table-responsive">
+    <table class="table table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nota1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nota2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nota3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Promedio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Estado)
+            </th>
+            <th>
+                Opciones
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nota1)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nota2)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nota3)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Promedio)
+                </td>
+                <td>
+                    @if (item.Promedio >= Convert.ToDecimal(6.0))
+                    {
+                        <font color="green">
+                            @Html.DisplayFor(modelItem => item.Estado)
+                        </font>
+                    }
+                    else
+                    {
+                        <font color="red">
+                            @Html.DisplayFor(modelItem => item.Estado)
+                        </font>
+                    }
+
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit", new { id = item.NotaID }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.NotaID }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+

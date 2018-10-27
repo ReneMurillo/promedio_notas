@@ -1,0 +1,77 @@
+﻿@model PromNotas.Models.Nota
+
+@{
+    ViewBag.Title = "Editar nota";
+}
+<br /><br />
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <center>Modificar nota</center>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.NotaID)
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Nota1, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Nota1, new { htmlAttributes = new { @class = "form-control", @onkeypress = "return check(event)" } })
+                                @Html.ValidationMessageFor(model => model.Nota1, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Nota2, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Nota2, new { htmlAttributes = new { @class = "form-control", @onkeypress = "return check(event)" } })
+                                @Html.ValidationMessageFor(model => model.Nota2, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Nota3, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Nota3, new { htmlAttributes = new { @class = "form-control", @onkeypress = "return check(event)" } })
+                                @Html.ValidationMessageFor(model => model.Nota3, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Guardar cambios" class="btn btn-primary" />
+                                @Html.ActionLink("Regresar a la lista", "Index", new { }, new { @class = "btn btn-default" })
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+<script type="text/javascript">
+    function check(e) {
+        tecla = (document.all) ? e.keyCode : e.which;
+
+        if (tecla == 8) {
+            return true;
+        }
+
+        patron = /[0-9 .]/;
+        tecla_final = String.fromCharCode(tecla);
+        return patron.test(tecla_final);
+    }
+
+</script>
